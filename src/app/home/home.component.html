@@ -1,1 +1,108 @@
-<p>home works!</p>
+<!-- src/app/home/home.component.html -->
+<section class="container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1>Unleash Your Style.</h1>
+        <p>Explore a dynamic collection of cutting-edge fashion and vibrant designs.</p>
+        <a routerLink="/products" class="cta-button">Discover Now</a>
+    </div>
+
+    <!-- Shop by Category Section -->
+    <div class="featured-categories">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1594938290141-8874de30bc58?fit=crop&w=400&q=80"
+                    alt="Men's Collection" class="category-image">
+                <h3 class="category-name">Men's Collection</h3>
+                <a routerLink="/products" class="category-link">Shop All</a>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1589379659343-26bc591a7e4e?fit=crop&w=400&q=80"
+                    alt="Women's Collection" class="category-image">
+                <h3 class="category-name">Women's Collection</h3>
+                <a routerLink="/products" class="category-link">Shop All</a>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1549298413-ef51f50106cf?fit=crop&w=400&q=80"
+                    alt="Accessories" class="category-image">
+                <h3 class="category-name">Accessories</h3>
+                <a routerLink="/products" class="category-link">Shop All</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Snippet Section -->
+    <div class="about-us-snippet">
+        <h2 class="section-title">Our Story</h2>
+        <p class="section-subtitle">Passion for fashion, commitment to quality.</p>
+        <div class="about-content">
+            <p>
+                At VibrantStyle, we're more than just a clothing brand. We're a community
+                driven by the belief that fashion should be a reflection of your unique energy
+                and a tool for self-expression. We meticulously curate collections that blend
+                cutting-edge trends with timeless quality, ensuring every piece you own
+                is both stylish and enduring.
+            </p>
+            <p>
+                Our commitment extends beyond aesthetics. We champion ethical production
+                and responsible sourcing, partnering with manufacturers who share our values.
+                Every garment tells a story of thoughtful design and conscious creation.
+            </p>
+            <a routerLink="/about" class="cta-button secondary-cta">Learn More About Us</a>
+        </div>
+    </div>
+
+    <!-- Featured Products Section -->
+    <div class="featured-products">
+        <h2 class="section-title">Must-Haves This Season</h2>
+        <p class="section-subtitle">Discover our top picks and best sellers.</p>
+        <div class="product-list-grid">
+            <!-- Sample Product Card (Angular would use *ngFor here) -->
+            <div class="product-card">
+                <a routerLink="/products/1">
+                    <img src="https://images.unsplash.com/photo-1521572178398-e0294e77d547?fit=crop&w=600&q=80"
+                        alt="Dynamic Tech Tee" class="product-image">
+                </a>
+                <div class="product-info">
+                    <div>
+                        <a routerLink="/products/1" class="product-name">Dynamic Tech Tee</a>
+                        <p class="product-price">$39.99</p>
+                    </div>
+                    <button class="add-to-cart-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <a routerLink="/products/2">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?fit=crop&w=600&q=80"
+                        alt="Urban Explorer Hoodie" class="product-image">
+                </a>
+                <div class="product-info">
+                    <div>
+                        <a routerLink="/products/2" class="product-name">Urban Explorer Hoodie</a>
+                        <p class="product-price">$75.00</p>
+                    </div>
+                    <button class="add-to-cart-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <a routerLink="/products/3">
+                    <img src="https://images.unsplash.com/photo-1543087900-4b6845c4858b?fit=crop&w=600&q=80"
+                        alt="Elevated Bomber Jacket" class="product-image">
+                </a>
+                <div class="product-info">
+                    <div>
+                        <a routerLink="/products/3" class="product-name">Elevated Bomber Jacket</a>
+                        <p class="product-price">$119.99</p>
+                    </div>
+                    <button class="add-to-cart-button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="view-all-products-btn-container">
+            <a routerLink="/products" class="cta-button secondary-cta">View All Products</a>
+        </div>
+    </div>
+</section>

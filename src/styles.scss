@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'variables';
+
+@import 'base';
+
+@import 'layout';
+
+@import 'buttons';
+
+@import 'mixins';
+
+
+
+// 5. Import Component/Page Specific Styles:
+//    These would typically be in their own component's .scss file,
+//    but included here for demonstration of a single compiled CSS output.
+//    In a real Angular app, these might be directly linked to their components.
+// @import 'header';
+// @import 'footer';
+// @import 'pages/home';
+// @import 'pages/products';
+// @import 'pages/product-details';
+// @import 'pages/about';
+// @import 'pages/contact';
+// @import 'responsive'; // Media queries for responsiveness
