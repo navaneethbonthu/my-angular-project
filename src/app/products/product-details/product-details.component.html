@@ -1,0 +1,30 @@
+<!-- src/app/product-details/product-details.component.html -->
+<section class="container">
+    <!-- This content would be dynamic based on the selected product ID -->
+    <!-- Example: For product ID 1 (Dynamic Tech Tee) -->
+    <h1 class="page-title">Dynamic Tech Tee</h1> <!-- Example Title, replace with {{ product.name }} -->
+    <div class="product-details-section">
+        <img src="https://images.unsplash.com/photo-1521572178398-e0294e77d547?fit=crop&w=800&q=80"
+            alt="Dynamic Tech Tee" class="product-details-image-large">
+        <div class="product-details-info">
+            <h1>Dynamic Tech Tee</h1> <!-- Replace with {{ product.name }} -->
+            <p class="price">$39.99</p> <!-- Replace with {{ product.price | currency }} -->
+            <p class="description">
+                Experience peak performance and style with our Dynamic Tech Tee.
+                Engineered with moisture-wicking fabric to keep you cool and dry,
+                it's perfect for active lifestyles or everyday comfort. Its ergonomic
+                design ensures maximum mobility, making it an essential for your dynamic life.
+            </p>
+            <h3>Product Highlights:</h3>
+            <ul>
+                <li>⚡ Material: 88% Recycled Polyester, 12% Spandex</li>
+                <li>⚡ Fit: Athletic Slim Fit</li>
+                <li>⚡ Care: Machine wash cold, air dry for best results</li>
+                <li>⚡ Available Sizes: S, M, L, XL, XXL</li>
+                <li>⚡ Color Options: Electric Blue, Stealth Black, Graphite Gray</li>
+            </ul>
+            <button class="add-to-cart-button">Add to Cart</button>
+            <a routerLink="/products" class="back-to-products-link">← Back to All Products</a>
+        </div>
+    </div>
+</section>

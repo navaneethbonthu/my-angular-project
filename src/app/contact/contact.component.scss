@@ -1,0 +1,152 @@
+
+/*
+ * src/app/contact/contact.component.scss
+ * Component-specific styles for the Contact Page.
+ */
+
+@import '../../assets/scss/variables';
+@import '../../assets/scss/layout';
+@import '../../assets/scss/buttons'; // For the form button
+
+.static-content-section {
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: var(--line-height-base);
+    padding: var(--spacing-xl); // Increased padding for a more spacious feel
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-md);
+    border: 1px solid var(--color-border);
+
+    p {
+        margin-bottom: var(--spacing-md);
+        font-size: var(--font-size-base);
+        color: var(--color-text-light);
+    }
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    max-width: 600px;
+    margin: var(--spacing-xl) auto; // More margin top/bottom for separation
+    padding: var(--spacing-lg); // More padding for the form card
+    background-color: var(--color-secondary); // Slightly different background for form
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-light); // Lighter shadow for form
+    border: 1px solid var(--color-border);
+
+    label {
+        font-weight: 600;
+        margin-bottom: var(--spacing-xs);
+        display: block;
+        color: var(--color-primary);
+        font-size: 0.95rem;
+    }
+
+    input,
+    textarea {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    textarea {
+        min-height: 150px; // Taller textarea
+        resize: vertical;
+    }
+
+    .send-message-button {
+        width: 100%;
+        padding: var(--spacing-md);
+        font-size: 1.1rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, var(--color-accent), #8e63ff); // Use vibrant accent for form button
+
+        &:hover {
+            background: linear-gradient(45deg, var(--color-accent-dark), #734ddb);
+        }
+    }
+}
+
+.contact-info {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+
+    h3 {
+        font-size: 1.8rem;
+        margin-bottom: var(--spacing-md);
+        color: var(--color-primary);
+        font-weight: 700;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: var(--spacing-lg);
+
+        li {
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+
+            &>a {
+                color: var(--color-primary);
+                font-weight: 600;
+
+                &:hover {
+                    color: var(--color-accent);
+                }
+            }
+        }
+    }
+
+    .social-link {
+        font-weight: 600;
+        color: var(--color-primary);
+        margin: 0 var(--spacing-xs);
+
+        &:hover {
+            color: var(--color-accent);
+        }
+    }
+}
+
+/* Re-using page-title and section-subtitle from layout partials */
+.page-title {
+    font-size: 3.2rem;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    font-weight: 800;
+}
+
+.section-subtitle {
+    font-size: 1.4rem;
+    text-align: center;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .static-content-section {
+        padding: var(--spacing-md);
+    }
+
+    .contact-form {
+        margin: var(--spacing-lg) auto;
+        padding: var(--spacing-md);
+    }
+
+    .contact-info {
+        margin-top: var(--spacing-lg);
+    }
+
+    .contact-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .contact-info ul li {
+        font-size: 1rem;
+    }
+}
