@@ -2,6 +2,9 @@
     <div class="hero-section">
         <h1>Unleash Your Style.</h1>
         <p>Explore a dynamic collection of cutting-edge fashion and vibrant designs.</p>
+        <div class="product-search-bar">
+            <input type="text" placeholder="Search products..." class="search-input" />
+        </div>
         <a routerLink="/products" class="cta-button">Discover Now</a>
     </div>
 
@@ -52,8 +55,16 @@
     <div class="featured-products">
         <h2 class="section-title">Must-Haves This Season</h2>
         <p class="section-subtitle">Discover our top picks and best sellers.</p>
+
+        <!-- Search Bar Start -->
+        <div class="product-search-bar">
+            <input type="text" placeholder="Search products..." class="search-input" [(ngModel)]="searchTerm"
+                (keyup.enter)="onSearch()" />
+        </div>
+        <!-- Search Bar End -->
+
         <div class="product-list-grid">
-            <div class="product-card">
+            <div class="product-card" *ngFor="let product of products">
                 <a routerLink="/products/1">
                     <img src="https://images.unsplash.com/photo-1521572178398-e0294e77d547?fit=crop&w=600&q=80"
                         alt="Dynamic Tech Tee" class="product-image">
@@ -67,7 +78,7 @@
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" *ngFor="let product of products">
                 <a routerLink="/products/2">
                     <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?fit=crop&w=600&q=80"
                         alt="Urban Explorer Hoodie" class="product-image">
@@ -81,7 +92,7 @@
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" *ngFor="let product of products">
                 <a routerLink="/products/3">
                     <img src="https://images.unsplash.com/photo-1543087900-4b6845c4858b?fit=crop&w=600&q=80"
                         alt="Elevated Bomber Jacket" class="product-image">

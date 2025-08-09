@@ -10,6 +10,10 @@ import { AboutComponent } from './about/about.component';
 import { ProductsComponent } from './products/products.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,8 +25,11 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
     ProductsComponent,
     ProductDetailsComponent,
     ContactComponent,
+    NotFoundComponent,
+    SigninComponent,
+    SignupComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

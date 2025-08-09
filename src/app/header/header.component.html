@@ -1,9 +1,13 @@
 <header class="header">
     <a routerLink="/" class="header-logo">VibrantStyle</a>
     <nav class="nav-links">
-        <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-        <a routerLink="/products" class="nav-link" routerLinkActive="active">Products</a>
-        <a routerLink="/about" class="nav-link" routerLinkActive="active">About Us</a>
-        <a routerLink="/contact" class="nav-link" routerLinkActive="active">Contact</a>
+        <a routerLink="/home" class="nav-link" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Home</a>
+        <a routerLink="/products" class="nav-link" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Products</a>
+        <a routerLink="/about" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">About
+            Us</a>
+        <a routerLink="/contact" class="nav-link" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Contact</a>
     </nav>
 </header>

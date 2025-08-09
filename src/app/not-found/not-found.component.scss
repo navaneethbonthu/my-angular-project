@@ -1,0 +1,90 @@
+/* This SCSS is specifically for an Angular component. */
+/* It will be scoped to the component's template by default. */
+
+// Variables for consistent styling
+$primary-text-color: #374151; // Tailwind gray-700 equivalent
+$secondary-text-color: #6b7280; // Tailwind gray-500 equivalent
+$heading-404-color: #dc2626; // Tailwind red-600 equivalent
+$background-color: #f3f4f6; // Tailwind gray-100 equivalent
+$card-background: #ffffff;
+$button-bg: #2563eb; // Tailwind blue-600 equivalent
+$button-hover-bg: #1d4ed8; // Tailwind blue-700 equivalent
+$font-stack: "Inter", sans-serif; // Assuming Inter font is loaded globally or in a shared style.
+
+.page-not-found-container {
+  /* Styles for the full page container */
+  background-color: $background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; // Ensures it takes full viewport height
+  color: $primary-text-color;
+  text-align: center;
+  width: 100%;
+  padding: 1rem; // Add some padding for smaller screens
+}
+
+.content-card {
+  /* Styles for the main content card */
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  max-width: 28rem;
+  width: 100%;
+  background-color: $card-background;
+}
+
+h1 {
+  font-size: 8rem;
+  font-weight: 800;
+  color: $heading-404-color;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: $primary-text-color;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1.125rem;
+  color: $secondary-text-color;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+a {
+  display: inline-block;
+  background-color: $button-bg;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: $button-hover-bg;
+    transform: scale(1.05);
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 6rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  .content-card {
+    padding: 1.5rem;
+  }
+}
