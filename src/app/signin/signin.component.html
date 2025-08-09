@@ -5,24 +5,32 @@
             <p class="subtitle">Please log in to your account</p>
         </div>
 
-        <form>
+        <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
             <div class="form-fields">
                 <div>
                     <label for="email" class="form-label">Email Address</label>
-                    <input type="email" id="email" name="email" autocomplete="email" required class="input-field"
-                        placeholder="you@example.com">
+                    <input type="email" id="email" formControlName="email" autocomplete="email" required
+                        class="input-field" placeholder="you@example.com">
+                    <div *ngIf="submitted && f['email'].errors" class="error">
+                        <span *ngIf="f['email'].errors?.['required']">Email is required.</span>
+                        <span *ngIf="f['email'].errors?.['email']">Invalid email address.</span>
+                    </div>
                 </div>
 
                 <div>
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" autocomplete="current-password" required
-                        class="input-field" placeholder="••••••••">
+                    <input type="password" id="password" formControlName="password" autocomplete="current-password"
+                        required class="input-field" placeholder="••••••••">
+                    <div *ngIf="submitted && f['password'].errors" class="error">
+                        <span *ngIf="f['password'].errors?.['required']">Password is required.</span>
+                    </div>
                 </div>
             </div>
 
             <div class="form-options">
                 <div class="checkbox-container">
-                    <input id="remember-me" name="remember-me" type="checkbox" class="checkbox-input">
+                    <input id="remember-me" name="remember-me" type="checkbox" class="checkbox-input"
+                        formControlName="rememberMe">
                     <label for="remember-me" class="checkbox-label">
                         Remember me
                     </label>
