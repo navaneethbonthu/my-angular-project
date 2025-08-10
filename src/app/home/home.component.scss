@@ -4,9 +4,9 @@
  * (Converted to SCSS Syntax)
  */
 
-@import "../../assets/scss/variables";
-@import "../../assets/scss/layout";
-@import "../../assets/scss/buttons";
+@import '../../assets/scss/variables';
+@import '../../assets/scss/layout';
+@import '../../assets/scss/buttons';
 
 .hero-section {
   background-color: var(--color-secondary);
@@ -203,23 +203,50 @@
       margin-bottom: var(--spacing-md);
       font-weight: 500;
     }
-  }
 
-  .add-to-cart-button {
-    background: linear-gradient(45deg, var(--color-accent), #8e63ff);
-    color: var(--color-white);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-sm);
-    font-weight: 600;
-    transition: all var(--transition-speed) ease;
-    box-shadow: var(--box-shadow-light);
-    width: 100%; // Make button full width of card
-
-    &:hover {
-      background: linear-gradient(45deg, var(--color-accent-dark), #734ddb);
-      transform: translateY(-2px);
-      box-shadow: var(--box-shadow-md);
+    // START OF NEW BUTTON STYLES
+    .product-actions {
+      display: flex;
+      gap: var(--spacing-sm); // Using an existing variable for spacing
+      margin-top: var(--spacing-md);
+      width: 100%;
     }
+
+    .add-to-cart-button,
+    .view-details-button {
+      flex: 1; // Makes both buttons take equal space
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-weight: 600;
+      border: 1px solid transparent; // Consistent border for both buttons
+      border-radius: var(--border-radius-sm);
+      transition: all var(--transition-speed) ease;
+      cursor: pointer;
+    }
+
+    .add-to-cart-button {
+      background: var(--color-primary); // Using a primary color for consistency
+      color: var(--color-white);
+      box-shadow: var(--box-shadow-light);
+
+      &:hover {
+        background: var(--color-accent); // Using accent for hover
+        transform: translateY(-2px);
+        box-shadow: var(--box-shadow-md);
+      }
+    }
+
+    .view-details-button {
+      background: var(--color-secondary);
+      color: var(--color-text);
+      border-color: var(--color-border);
+
+      &:hover {
+        background: var(--color-border);
+        color: var(--color-primary);
+        transform: translateY(-2px);
+      }
+    }
+    // END OF NEW BUTTON STYLES
   }
 }
 
@@ -227,22 +254,41 @@
   margin-top: var(--spacing-lg);
 }
 
+// MODIFIED STYLES for search bar
 .product-search-bar {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--spacing-lg);
+  margin: var(--spacing-xl) auto; /* Add vertical margin and center horizontally */
+  max-width: 600px; /* Wider max-width for better desktop look */
 
   .search-input {
-    width: 100%;
-    max-width: 400px;
+    flex: 1; /* Allow the input to grow and take available space */
     padding: var(--spacing-sm) var(--spacing-md);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-sm);
+    border-right: none; /* Remove right border for seamless connection to the button */
+    border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm); /* Rounded corners only on the left */
     font-size: 1.1rem;
     outline: none;
     transition: border-color var(--transition-speed) ease;
 
     &:focus {
+      border-color: var(--color-accent);
+    }
+  }
+
+  .search-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary); /* Match the input border */
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0; /* Rounded corners only on the right */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+
+    &:hover {
+      background-color: var(--color-accent);
       border-color: var(--color-accent);
     }
   }
@@ -257,6 +303,31 @@
 
     p {
       font-size: 1.3rem;
+    }
+  }
+
+  // New responsive styles for the search bar
+  .product-search-bar {
+    flex-direction: column; /* Stack input and button vertically on mobile */
+    max-width: 100%;
+    padding: 0 var(--spacing-sm);
+
+    .search-input,
+    .search-button {
+      border-radius: var(
+        --border-radius-sm
+      ); /* Re-add all rounded corners for mobile */
+      border: 1px solid var(--color-border);
+    }
+
+    .search-input {
+      margin-bottom: var(--spacing-xs); /* Add space between input and button */
+    }
+
+    .search-button {
+      border-color: var(
+        --color-primary
+      ); /* Ensure button border is consistent */
     }
   }
 
@@ -284,9 +355,10 @@
     padding: 0 var(--spacing-sm);
   }
 
-  .add-to-cart-button {
-    width: auto; // Revert to auto width for smaller screens for better fit
-    padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.9rem;
+  .product-card .product-info {
+    .product-actions {
+      flex-direction: column; // Stack buttons vertically on small screens
+      gap: var(--spacing-xs);
+    }
   }
 }

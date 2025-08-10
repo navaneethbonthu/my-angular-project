@@ -1,13 +1,49 @@
 <header class="header">
-    <a routerLink="/" class="header-logo">VibrantStyle</a>
+    <a
+        routerLink="/"
+        class="header-logo"
+    >VibrantStyle</a>
     <nav class="nav-links">
-        <a routerLink="/home" class="nav-link" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}">Home</a>
-        <a routerLink="/products" class="nav-link" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}">Products</a>
-        <a routerLink="/about" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">About
+        <a
+            routerLink="/home"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"
+        >
+            Home</a>
+        <a
+            routerLink="/products"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"
+        >Products</a>
+        <a
+            routerLink="/about"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"
+        >About
             Us</a>
-        <a routerLink="/contact" class="nav-link" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}">Contact</a>
+        <a
+            routerLink="/contact"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"
+        >Contact</a>
+        <a
+            routerLink="/signin"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"
+        >Sign In</a>
+        <a
+            routerLink="/signin"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"
+            [queryParams]="{'logout':true}"
+        >
+            Signout
+        </a>
     </nav>
 </header>

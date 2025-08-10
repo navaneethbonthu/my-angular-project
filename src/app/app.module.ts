@@ -12,7 +12,6 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ContactComponent,
     NotFoundComponent,
     SigninComponent,
-    SignupComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
