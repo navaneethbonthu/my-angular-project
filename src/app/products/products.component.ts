@@ -16,12 +16,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {}
 
   products: Product[] = [];
-  queryParamSubscription: Subscription | undefined;
+  queryParamsSubscription: Subscription | undefined;
 
   ngOnInit(): void {
-    this.queryParamSubscription = this.activatedRoute.queryParams.subscribe(
+    this.queryParamsSubscription = this.activatedRoute.queryParamMap.subscribe(
       (params) => {
-        const searchQuery = params['search'];
+        const searchQuery = params.get('search');
         if (searchQuery) {
           this.products = this.productsService.products.filter((product) =>
             product.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -34,8 +34,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.queryParamSubscription) {
-      this.queryParamSubscription.unsubscribe();
+    if (this.queryParamsSubscription) {
+      this.queryParamsSubscription.unsubscribe();
     }
   }
 }

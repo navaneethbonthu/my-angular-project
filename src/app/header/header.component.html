@@ -15,20 +15,17 @@
             routerLink="/products"
             class="nav-link"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}"
         >Products</a>
         <a
             routerLink="/about"
             class="nav-link"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}"
         >About
             Us</a>
         <a
             routerLink="/contact"
             class="nav-link"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}"
         >Contact</a>
         <a
             routerLink="/signin"
@@ -40,8 +37,8 @@
             routerLink="/signin"
             class="nav-link"
             routerLinkActive="active"
+            (click)="logout()"
             [routerLinkActiveOptions]="{exact:true}"
-            [queryParams]="{'logout':true}"
         >
             Signout
         </a>
