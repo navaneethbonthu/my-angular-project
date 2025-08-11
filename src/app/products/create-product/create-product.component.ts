@@ -19,9 +19,7 @@ export class CreateProductComponent {
     });
   }
   onSubmit(): void {
-    this.cancel.emit();
     if (this.productForm.valid) {
-      console.log('Product to be added:', this.productForm.value);
       this.productAdded.emit(this.productForm.value);
       this.productForm.reset();
     } else {
