@@ -7,6 +7,12 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { ContactComponent } from './contact/contact.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SigninComponent } from './signin/signin.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import {
+  canActivateChildFn,
+  canActivateFn,
+  canDeactivateFn,
+} from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,12 +20,28 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   {
     path: 'products',
+    // canActivate: [canActivateFn],
+    // canActivateChild: [canActivateChildFn],
     children: [
       { path: '', component: ProductsComponent },
-      { path: ':id', component: ProductDetailsComponent },
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
+        canActivate: [canActivateFn],
+      },
+      {
+        path: ':id',
+        component: ProductDetailsComponent,
+        canActivate: [canActivateFn],
+      },
     ],
   },
-  { path: 'contact', component: ContactComponent },
+
+  {
+    path: 'contact',
+    component: ContactComponent,
+    canDeactivate: [canDeactivateFn],
+  },
   { path: 'signin', component: SigninComponent },
   { path: '**', component: NotFoundComponent },
 ];

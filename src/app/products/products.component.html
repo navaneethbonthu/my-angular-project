@@ -4,16 +4,9 @@
     <p class="section-subtitle">Discover our full range of dynamic and vibrant apparel.</p>
     <div class="product-list-grid">
 
-        <div
-            class="product-card"
-            *ngFor="let product of products"
-        >
+        <div class="product-card" *ngFor="let product of products">
             <a>
-                <img
-                    src="{{ product.image }}"
-                    alt="Dynamic Tech Tee"
-                    class="product-image"
-                >
+                <img src="{{ product.image }}" alt="Dynamic Tech Tee" class="product-image">
             </a>
             <div class="product-info">
                 <div>
@@ -21,11 +14,9 @@
                     <p class="product-price">{{product.price}}</p>
                 </div>
                 <div class="product-actions">
-                    <button class="add-to-cart-button">Add to Cart</button>
-                    <a
-                        class="view-details-button"
-                        [routerLink]="'/products/' + product.id"
-                    >View Details</a>
+                    <button class="add-to-cart-button" [routerLink]="'/products/checkout'" [state]="product">Add to
+                        Cart</button>
+                    <a class="view-details-button" [routerLink]="'/products/' + product.id">View Details</a>
                 </div>
             </div>
         </div>

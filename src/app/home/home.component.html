@@ -3,22 +3,11 @@
         <h1>Unleash Your Style.</h1>
         <p>Explore a dynamic collection of cutting-edge fashion and vibrant designs.</p>
         <div class="product-search-bar">
-            <input
-                type="text"
-                placeholder="Search products..."
-                class="search-input"
-                #searchInput
-            />
-            <button
-                class="search-button"
-                [routerLink]="'/products'"
-                (click)="onSearch(searchInput.value)"
-            >Search</button>
+            <input type="text" placeholder="Search products..." class="search-input" #searchInput />
+            <button class="search-button" [routerLink]="'/products'"
+                (click)="onSearch(searchInput.value)">Search</button>
         </div>
-        <a
-            class="cta-button"
-            (click)="navigateToAppProducts()"
-        >Discover Now</a>
+        <a class="cta-button" (click)="navigateToAppProducts()">Discover Now</a>
     </div>
 
 
@@ -39,10 +28,7 @@
                 and responsible sourcing, partnering with manufacturers who share our values.
                 Every garment tells a story of thoughtful design and conscious creation.
             </p>
-            <a
-                routerLink="/about"
-                class="cta-button secondary-cta"
-            >Learn More About Us</a>
+            <a routerLink="/about" class="cta-button secondary-cta">Learn More About Us</a>
         </div>
     </div>
 
@@ -52,16 +38,9 @@
 
 
         <div class="product-list-grid">
-            <div
-                class="product-card"
-                *ngFor="let product of products"
-            >
+            <div class="product-card" *ngFor="let product of products">
                 <a>
-                    <img
-                        [src]="product.image"
-                        [alt]="product.name"
-                        class="product-image"
-                    >
+                    <img [src]="product.image" [alt]="product.name" class="product-image">
                 </a>
                 <div class="product-info">
                     <div>
@@ -69,11 +48,8 @@
                         <p class="product-price">${{ product.price }}</p>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart-button">Add to Cart</button>
-                        <button
-                            class="view-details-button"
-                            [routerLink]="'/products/' + product.id"
-                        >View</button>
+                        <button class="add-to-cart-button" [routerLink]="'/products/checkout'">Add to Cart</button>
+                        <button class="view-details-button" [routerLink]="'/products/' + product.id">View</button>
                     </div>
                 </div>
             </div>
@@ -81,11 +57,8 @@
 
         </div>
         <div class="view-all-products-btn-container">
-            <a
-                routerLink="/products"
-                class="cta-button secondary-cta"
-                (click)="navigateToAppProducts()"
-            >View All Products</a>
+            <a routerLink="/products" class="cta-button secondary-cta" (click)="navigateToAppProducts()">View All
+                Products</a>
         </div>
     </div>
 </section>

@@ -1,17 +1,20 @@
 <section class="container">
-    <form class="contact-form">
+    <form class="contact-form" (ngSubmit)="onSubmit()">
         <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="E.g., Alex Johnson" required>
+        <input type="text" id="name" name="name" placeholder="E.g., Alex Johnson" [(ngModel)]="contactForm.name"
+            required>
 
         <label for="email">Your Email</label>
-        <input type="email" id="email" name="email" placeholder="alex.j@example.com" required>
+        <input type="email" id="email" name="email" placeholder="alex.j@example.com" [(ngModel)]="contactForm.email"
+            required>
 
         <label for="subject">Subject</label>
-        <input type="text" id="subject" name="subject" placeholder="Order #VS1234 / Product Inquiry" required>
+        <input type="text" id="subject" name="subject" placeholder="Order #VS1234 / Product Inquiry"
+            [(ngModel)]="contactForm.subject" required>
 
         <label for="message">Your Message</label>
         <textarea id="message" name="message" rows="6" placeholder="Type your detailed message here..."
-            required></textarea>
+            [(ngModel)]="contactForm.message" required></textarea>
 
         <button type="submit" class="send-message-button">Send Message</button>
     </form>
