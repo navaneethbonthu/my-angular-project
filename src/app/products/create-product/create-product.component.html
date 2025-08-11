@@ -1,0 +1,36 @@
+<div class="add-product-container">
+    <h1 class="page-title">Add a New Product</h1>
+
+    <form class="add-product-form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+        <label for="name">Product Name</label>
+        <input type="text" id="name" formControlName="name" placeholder="Enter Product Name" required>
+
+        <div *ngIf="productForm.get('name')?.invalid && (productForm.get('name')?.dirty || productForm.get('name')?.touched)"
+            class="validation-message">
+            <span *ngIf="productForm.get('name')?.errors?.['required']">Product Name is required.</span>
+        </div>
+
+        <label for="price">Product Price ($)</label>
+        <input type="number" id="price" formControlName="price" placeholder="Enter Price" required min="0">
+
+        <div *ngIf="productForm.get('price')?.invalid && (productForm.get('price')?.dirty || productForm.get('price')?.touched)"
+            class="validation-message">
+            <span *ngIf="productForm.get('price')?.errors?.['required']">Product Price is required.</span>
+            <span *ngIf="productForm.get('price')?.errors?.['min']">Price must be a positive number.</span>
+        </div>
+
+        <label for="image">Product Image URL</label>
+        <input type="url" id="image" formControlName="image" placeholder="Enter Image" required>
+
+        <div *ngIf="productForm.get('image')?.invalid && (productForm.get('image')?.dirty || productForm.get('image')?.touched)"
+            class="validation-message">
+            <span *ngIf="productForm.get('image')?.errors?.['required']">Product Image URL is required.</span>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
+            <button type="submit" class="submit-button" [disabled]="productForm.invalid">Add Product</button>
+        </div>
+    </form>
+</div>

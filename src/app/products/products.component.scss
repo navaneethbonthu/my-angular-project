@@ -1,4 +1,3 @@
-
 /*
  * src/app/products/products.component.scss
  * Component-specific styles for the Products Page.
@@ -7,17 +6,14 @@
 @import '../../assets/scss/variables';
 @import '../../assets/scss/layout';
 @import '../../assets/scss/buttons'; // Include buttons for product card buttons
-/* ================================================================
-// Responsive Product List Styles
-// ================================================================ */
-/* ================================================================
-// Responsive Product List Styles
-// ================================================================ */
+@import '../../assets/scss/modal'; // Include buttons for product card buttons
 
-// Variables for easy customization
+// ================================================================
+// Existing Variables and Base Styles
+// ================================================================
 $primary-color: #333;
-$secondary-color: #007bff; // A vibrant blue for main actions
-$accent-color: #6c757d; // A slightly muted color for secondary actions
+$secondary-color: #007bff;
+$accent-color: #6c757d;
 $background-color: #f8f9fa;
 $card-bg: #fff;
 $card-border: #e2e6ea;
@@ -52,6 +48,39 @@ body {
     margin-bottom: 3rem;
 }
 
+// ================================================================
+// Header and Add Product Button
+// ================================================================
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.add-product-button {
+    background-color: $secondary-color; // Using a green color for "add"
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($secondary-color, 10%);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+// ================================================================
+// Product Card and Grid Styles
+// ================================================================
 .product-list-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -79,7 +108,6 @@ body {
     height: 250px;
     object-fit: cover;
     display: block;
-    /* Ensures no extra space below the image */
 }
 
 .product-info {
@@ -88,7 +116,6 @@ body {
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
-    /* Allows info section to take available space */
 
     .product-name {
         font-size: 1.25rem;
@@ -108,18 +135,14 @@ body {
         font-weight: 700;
         margin-top: 0.5rem;
         margin-bottom: 1rem;
-        /* Added margin for separation from buttons */
     }
 }
 
 .product-actions {
     display: flex;
     flex-direction: column;
-    /* Stack buttons vertically by default */
     gap: 0.75rem;
-    /* Space between buttons */
     margin-top: auto;
-    /* Pushes buttons to the bottom of the card */
 }
 
 .add-to-cart-button,
@@ -133,9 +156,7 @@ body {
     font-weight: 600;
     text-align: center;
     text-decoration: none;
-    /* For the anchor tag acting as a button */
     display: inline-block;
-    /* Ensure anchor tag acts like a block for full width */
     transition: background-color 0.2s ease, transform 0.1s ease, color 0.2s ease;
 }
 
@@ -168,19 +189,72 @@ body {
 }
 
 
-/* ================================================================
-// Media Queries
-// ================================================================ */
 
+.add-product-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-product-form label {
+    font-weight: bold;
+    margin-top: 15px;
+    color: $primary-color;
+}
+
+.add-product-form input {
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid $card-border;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.submit-button,
+.cancel-button {
+    flex-grow: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+
+    &:hover {
+        background-color: darken(#4CAF50, 10%);
+    }
+}
+
+.cancel-button {
+    background-color: #f44336;
+    color: white;
+
+    &:hover {
+        background-color: darken(#f44336, 10%);
+    }
+}
+
+// ================================================================
+// Responsive Styles
+// ================================================================
 @media (min-width: 769px) {
     .product-actions {
         flex-direction: row;
 
-        /* Layout buttons side-by-side on larger screens */
         .add-to-cart-button,
         .view-details-button {
             flex: 1;
-            /* Distribute space equally between buttons */
         }
     }
 }

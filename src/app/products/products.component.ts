@@ -1,41 +1,45 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+// src/app/products/products.component.ts
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductsService } from '../services/products.service';
 import { Product } from '../models/product';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
+  products: Product[] = [];
+  showAddProductModal: boolean = false;
   constructor(
-    private productsService: ProductsService,
-    private activatedRoute: ActivatedRoute
+    private router: Router,
+    private productsService: ProductsService
   ) {}
 
-  products: Product[] = [];
-  queryParamsSubscription: Subscription | undefined;
-
   ngOnInit(): void {
-    this.queryParamsSubscription = this.activatedRoute.queryParamMap.subscribe(
-      (params) => {
-        const searchQuery = params.get('search');
-        if (searchQuery) {
-          this.products = this.productsService.products.filter((product) =>
-            product.name.toLowerCase().includes(searchQuery.toLowerCase())
-          );
-        } else {
-          this.products = this.productsService.products;
-        }
-      }
-    );
+    this.products = this.productsService.products;
   }
 
-  ngOnDestroy(): void {
-    if (this.queryParamsSubscription) {
-      this.queryParamsSubscription.unsubscribe();
-    }
+  onSubmit(): void {
+    console.log('Product to be added:');
+    const newId = this.products.length + 1;
+  }
+
+  // Method to open the modal
+  openAddProductModal(): void {
+    this.showAddProductModal = true;
+  }
+  onProductAdded(newProduct: any): void {
+    const newId = this.products.length + 1; // Generate a simple mock ID
+    this.products.push({ id: newId, ...newProduct });
+    this.closeModal();
+  }
+  onModalCancel(): void {
+    this.closeModal();
+  }
+
+  private closeModal(): void {
+    this.showAddProductModal = false;
   }
 }
