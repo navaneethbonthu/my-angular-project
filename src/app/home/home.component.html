@@ -54,6 +54,14 @@
                 </div>
             </div>
 
+            <div *ngIf="products.length === 0" class="no-products-available">
+                <p class="no-products-message">
+                    Currently, there are no products available.
+                </p>
+                <p class="no-products-subtext">
+                    Be the first to add a new product!
+                </p>
+            </div>
 
         </div>
         <div class="view-all-products-btn-container">

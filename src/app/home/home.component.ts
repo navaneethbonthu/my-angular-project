@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.products = this.productsService.products;
+    // this.products = this.productsService.products;
   }
 
   navigateToAppProducts() {

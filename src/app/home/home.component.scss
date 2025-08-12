@@ -362,3 +362,43 @@
     }
   }
 }
+
+.no-products-available {
+  text-align: center;
+  padding: 3rem;
+  margin-top: 2rem;
+  background-color: #a79f28;
+  border: 1px dashed RED;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  .no-products-message {
+    font-size: 1.5rem;
+    color: blue;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .no-products-subtext {
+    font-size: 1rem;
+    color:white;
+    margin-bottom: 1.5rem;
+  }
+
+  .add-product-button.cta-button {
+    /* Reuses styles from the main add-product-button, but can be customized here */
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: #28a745;
+    /* A distinct green for this CTA */
+
+    &:hover {
+      background-color: darken(#28a745, 10%);
+    }
+  }
+}

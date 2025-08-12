@@ -20,14 +20,14 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.paramSubscription = this.activatedRoute.paramMap.subscribe(
-      (params) => {
-        this.paramId = params.get('id');
-        this.selectedProduct = this.productsService.products.find(
-          (product) => product.id === Number(this.paramId)
-        );
-      }
-    );
+    // this.paramSubscription = this.activatedRoute.paramMap.subscribe(
+    //   (params) => {
+    //     this.paramId = params.get('id');
+    //     this.selectedProduct = this.productsService.products.find(
+    //       (product) => product.id === this.paramId
+    //     );
+    //   }
+    // );
   }
   ngOnDestroy(): void {
     if (this.paramSubscription) {

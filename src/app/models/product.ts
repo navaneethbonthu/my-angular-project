@@ -1,6 +1,8 @@
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   price: number;
   image: string;
 }
+
+export type ProductPayload = Omit<Product, 'id'>;

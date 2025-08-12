@@ -5,15 +5,15 @@
 
 @import '../../assets/scss/variables';
 @import '../../assets/scss/layout';
-@import '../../assets/scss/buttons'; // Include buttons for product card buttons
-@import '../../assets/scss/modal'; // Include buttons for product card buttons
+@import '../../assets/scss/buttons'; // Including for general button base styles
+@import '../../assets/scss/modal'; // Including for modal styles
 
 // ================================================================
-// Existing Variables and Base Styles
+// Existing Variables and Base Styles (from your provided code)
 // ================================================================
 $primary-color: #333;
-$secondary-color: #007bff;
-$accent-color: #6c757d;
+$secondary-color: #007bff; // Main action color (blue)
+$accent-color: #6c757d; // Neutral/secondary action color (gray)
 $background-color: #f8f9fa;
 $card-bg: #fff;
 $card-border: #e2e6ea;
@@ -59,7 +59,7 @@ body {
 }
 
 .add-product-button {
-    background-color: $secondary-color; // Using a green color for "add"
+    background-color: $secondary-color; // Using $secondary-color (blue) for "add" button
     color: #fff;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -138,125 +138,173 @@ body {
     }
 }
 
-.product-actions {
+// ================================================================
+// Product Card Action Buttons Layout and Styling (MODIFIED)
+// ================================================================
+.product-details-actions {
+    /* Renamed from .product-actions as per your HTML */
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    /* Pushes content to the ends: Add to Cart left, group right */
+    align-items: center;
+    /* Vertically aligns items */
     gap: 0.75rem;
+    /* Space between the left button and the right group */
     margin-top: auto;
+    /* Pushes the actions to the bottom of the product-info flex container */
+    width: 100%;
+    /* Ensure it takes full width of its parent */
 }
 
-.add-to-cart-button,
-.view-details-button {
-    width: 100%;
+/* Styles for the Add to Cart button (left side) */
+.add-to-cart-button {
+    flex-grow: 1;
+    /* Allows it to take up available space */
+    padding: 0.8rem 1rem;
     border: none;
-    border-radius: 5px;
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    font-size: 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
     font-weight: 600;
     text-align: center;
+    cursor: pointer;
     text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.2s ease, transform 0.1s ease, color 0.2s ease;
-}
+    /* For routerLink */
+    display: inline-flex;
+    /* For centering content */
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    /* Consolidated transition */
 
-.add-to-cart-button {
     background-color: $secondary-color;
+    /* Vibrant blue for main CTA */
     color: #fff;
 
     &:hover {
-        background-color: darken($secondary-color, 10%);
+        background-color: darken($secondary-color, 8%);
+        transform: translateY(-2px);
+        /* Subtle lift on hover */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     &:active {
-        transform: scale(0.98);
+        transform: translateY(0);
+        /* Press-down effect */
+        box-shadow: none;
     }
 }
 
-.view-details-button {
-    background-color: transparent;
-    color: $accent-color;
-    border: 1px solid $accent-color;
+/* Container for the icon-like buttons (right side) */
+.action-icon-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Tight spacing between small icon buttons */
+    flex-shrink: 0;
+    /* Prevent this group from shrinking */
+}
+
+/* Styles for the icon-like buttons (View, Edit, Delete) - Common properties */
+.view-details-button,
+.edit-button,
+.delete-button {
+    width: 38px;
+    /* Fixed width for a square shape */
+    height: 38px;
+    /* Fixed height for a square shape */
+    padding: 0;
+    /* Remove internal padding as content is minimal */
+    border: 1px solid #e0e0e0;
+    /* Light border for definition */
+    border-radius: 50%;
+    /* Makes them perfectly round */
+    font-size: 0.7rem;
+    /* Smaller font size for icon-like text */
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    /* For View Details link */
+    display: inline-flex;
+    /* For centering content */
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    /* Consolidated transition */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow */
 
     &:hover {
-        background-color: $accent-color;
+        transform: translateY(-2px);
+        /* Subtle lift */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        /* More pronounced shadow on hover */
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+}
+
+/* Specific colors for icon-like buttons */
+.view-details-button {
+    background-color: #e0f2f7;
+    /* Light blue background */
+    color: #0288d1;
+    /* Blue text */
+    border-color: #b3e5fc;
+    /* Light blue border */
+
+    &:hover {
+        background-color: #0288d1;
+        /* Darker blue on hover */
         color: #fff;
     }
-
-    &:active {
-        transform: scale(0.98);
-    }
 }
 
-
-
-.add-product-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.add-product-form label {
-    font-weight: bold;
-    margin-top: 15px;
-    color: $primary-color;
-}
-
-.add-product-form input {
-    padding: 12px;
-    margin-top: 8px;
-    border: 1px solid $card-border;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.form-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    gap: 10px;
-}
-
-.submit-button,
-.cancel-button {
-    flex-grow: 1;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button {
-    background-color: #4CAF50;
-    color: white;
+.edit-button {
+    background-color: #fffde7;
+    /* Light yellow background */
+    color: #fbc02d;
+    /* Orange text */
+    border-color: #fff59d;
+    /* Light yellow border */
 
     &:hover {
-        background-color: darken(#4CAF50, 10%);
+        background-color: #fbc02d;
+        /* Darker orange on hover */
+        color: #fff;
     }
 }
 
-.cancel-button {
-    background-color: #f44336;
-    color: white;
+.delete-button {
+    background-color: #ffebee;
+    /* Light red background */
+    color: #d32f2f;
+    /* Red text */
+    border-color: #ef9a9a;
+    /* Light red border */
 
     &:hover {
-        background-color: darken(#f44336, 10%);
+        background-color: #d32f2f;
+        /* Darker red on hover */
+        color: #fff;
     }
 }
+
+
+// ================================================================
+// Removed redundant form styles (these should be in add-product.component.scss)
+// ================================================================
+// .add-product-form, .add-product-form label, .add-product-form input,
+// .form-actions, .submit-button, .cancel-button - these are now in add-product.component.scss
 
 // ================================================================
 // Responsive Styles
 // ================================================================
 @media (min-width: 769px) {
-    .product-actions {
-        flex-direction: row;
-
-        .add-to-cart-button,
-        .view-details-button {
-            flex: 1;
-        }
-    }
+    /* No specific changes here for the buttons as the flex layout handles it */
 }
 
 @media (max-width: 768px) {
@@ -271,6 +319,52 @@ body {
     .product-list-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 1.5rem;
+    }
+
+    .product-details-actions {
+        flex-direction: column;
+        /* Stack items vertically on small screens */
+        gap: 0.75rem;
+        /* Space between stacked buttons */
+
+        .add-to-cart-button,
+        .action-icon-group {
+            width: 100%;
+            /* Make both the main button and the group span full width */
+        }
+
+        .action-icon-group {
+            justify-content: center;
+            /* Center the icon buttons within their group when stacked */
+        }
+    }
+
+    .add-to-cart-button,
+    .view-details-button,
+    .edit-button,
+    .delete-button {
+        padding: 0.6rem 0.8rem;
+        /* Adjust padding for smaller screens */
+        font-size: 0.9rem;
+        /* Adjust font size for smaller screens */
+        width: auto;
+        /* Allow buttons to size based on content if not full width */
+        border-radius: 5px;
+        /* Adjust border radius for smaller screens */
+    }
+
+    /* Override fixed width for icon buttons on small screens if they stack */
+    .view-details-button,
+    .edit-button,
+    .delete-button {
+        width: auto;
+        /* Let content dictate width */
+        height: auto;
+        /* Let content dictate height */
+        padding: 0.6rem 0.8rem;
+        /* Reapply padding */
+        border-radius: 5px;
+        /* Reapply normal button border radius */
     }
 }
 
@@ -295,11 +389,5 @@ body {
         .product-price {
             font-size: 1rem;
         }
-    }
-
-    .add-to-cart-button,
-    .view-details-button {
-        padding: 0.6rem 0.8rem;
-        font-size: 0.9rem;
     }
 }

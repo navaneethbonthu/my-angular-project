@@ -1,5 +1,5 @@
 <div class="add-product-container">
-    <h1 class="page-title">Add a New Product</h1>
+    <h1 class="page-title">{{isEditMode? 'Edit': 'Add'}} Product Here</h1>
 
     <form class="add-product-form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
 
@@ -30,7 +30,8 @@
 
         <div class="form-actions">
             <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
-            <button type="submit" class="submit-button" [disabled]="productForm.invalid">Add Product</button>
+            <button type="submit" class="submit-button" [disabled]="productForm.invalid">Submit
+            </button>
         </div>
     </form>
 </div>

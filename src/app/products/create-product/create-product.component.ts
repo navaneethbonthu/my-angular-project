@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-create-product',
@@ -7,6 +8,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-product.component.scss'],
 })
 export class CreateProductComponent {
+  @Input() isEditMode = false;
+  @Input() selectedProduct: Product | null = null;
   @Output() productAdded = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<void>();
 
@@ -17,6 +20,16 @@ export class CreateProductComponent {
       price: new FormControl(0, [Validators.required, Validators.min(0.01)]),
       image: new FormControl('', [Validators.required]),
     });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (this.isEditMode && this.selectedProduct) {
+        this.productForm.patchValue({
+          ...this.selectedProduct,
+        });
+      }
+    }, 0);
   }
   onSubmit(): void {
     if (this.productForm.valid) {

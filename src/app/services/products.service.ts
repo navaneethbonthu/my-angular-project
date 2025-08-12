@@ -1,27 +1,56 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Product, ProductPayload } from '../models/product';
+import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-  products = [
-    {
-      id: 1,
-      name: 'Dynamic Tech Tee',
-      price: 39.99,
-      image: 'https://placehold.co/400x300/e2e6ea/6c757d?text=Dynamic Tech Tee',
-    },
-    {
-      id: 2,
-      name: 'Urban Explorer Hoodie',
-      price: 75.0,
-      image:
-        'https://placehold.co/400x300/e2e6ea/6c757d?text=Urban Explorer Hoodie',
-    },
-    {
-      id: 3,
-      name: 'Elevated Bomber Jacket',
-      price: 119.99,
-      image:
-        'https://placehold.co/400x300/e2e6ea/6c757d?text=Elevated Bomber Jacket',
-    },
-  ];
+  constructor(private httpClient: HttpClient) {}
+
+  createProduct(product: ProductPayload): void {
+    this.httpClient
+      .post<{ name: string }>(
+        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products.json`,
+        product
+      )
+      .subscribe({
+        next: (response) => {
+          console.log('Added product:', response);
+        },
+        error: (error) => {
+          console.error('Error adding product:', error);
+        },
+      });
+  }
+
+  deleteProduct(id: string) {
+    return this.httpClient.delete(
+      `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`
+    );
+  }
+
+  getAllProducts(): Observable<Product[]> {
+    return this.httpClient
+      .get<{ [key: string]: Product }>(
+        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products.json`
+      )
+      .pipe(
+        map((responseData: { [key: string]: Product }) => {
+          const productsArray: Product[] = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              productsArray.push({ ...responseData[key], id: key });
+            }
+          }
+          return productsArray;
+        })
+      );
+  }
+
+  updateProduct(id: string, product: ProductPayload) {
+    return this.httpClient.put(
+      `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`,
+      product
+    );
+  }
 }

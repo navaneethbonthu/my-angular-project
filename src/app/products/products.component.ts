@@ -2,7 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from '../services/products.service';
-import { Product } from '../models/product';
+import { Product, ProductPayload } from '../models/product';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -12,34 +14,54 @@ import { Product } from '../models/product';
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
   showAddProductModal: boolean = false;
-  constructor(
-    private router: Router,
-    private productsService: ProductsService
-  ) {}
+  isEdit: boolean = false;
+  selectedProduct: Product | null = null;
+  isLoading: boolean = false;
+  constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.products = this.productsService.products;
+    this.onGetAllProducts();
   }
 
-  onSubmit(): void {
-    console.log('Product to be added:');
-    const newId = this.products.length + 1;
+  onModalCancel(): void {
+    this.showAddProductModal = false;
   }
 
-  // Method to open the modal
   openAddProductModal(): void {
     this.showAddProductModal = true;
-  }
-  onProductAdded(newProduct: any): void {
-    const newId = this.products.length + 1; // Generate a simple mock ID
-    this.products.push({ id: newId, ...newProduct });
-    this.closeModal();
-  }
-  onModalCancel(): void {
-    this.closeModal();
+    this.isEdit = false;
   }
 
-  private closeModal(): void {
+  onProductAddOrUpdatSubmit(newProduct: ProductPayload): void {
     this.showAddProductModal = false;
+    if (this.isEdit && this.selectedProduct) {
+      this.productsService
+        .updateProduct(this.selectedProduct.id, newProduct)
+        .subscribe();
+    } else {
+      this.productsService.createProduct(newProduct);
+    }
+  }
+
+  onEditProduct(id: string) {
+    this.isEdit = true;
+    this.showAddProductModal = true;
+    this.selectedProduct =
+      this.products.find((product) => product.id === id) || null;
+    if (this.selectedProduct) {
+      this.selectedProduct = this.selectedProduct as Product;
+    }
+  }
+
+  onGetAllProducts(): void {
+    this.isLoading = true;
+    this.productsService.getAllProducts().subscribe((products) => {
+      this.products = products;
+      this.isLoading = false;
+    });
+  }
+
+  onDeleteProduct(id: string): void {
+    this.productsService.deleteProduct(id).subscribe();
   }
 }

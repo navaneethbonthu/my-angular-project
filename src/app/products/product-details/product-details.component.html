@@ -1,15 +1,6 @@
 <section class="container">
-    <!-- This content would be dynamic based on the selected product ID -->
-    <!-- Example: For product ID 1 (Dynamic Tech Tee) -->
-    <div
-        class="product-details-section"
-        *ngIf="selectedProduct"
-    >
-        <img
-            src="{{selectedProduct.image}}"
-            alt="Dynamic Tech Tee"
-            class="product-details-image-large"
-        >
+    <div class="product-details-section" *ngIf="selectedProduct">
+        <img src="{{selectedProduct.image}}" alt="Dynamic Tech Tee" class="product-details-image-large">
         <div class="product-details-info">
             <h1>{{selectedProduct.name}}</h1>
             <p class="price">{{selectedProduct.price}}</p>
@@ -29,29 +20,18 @@
             </ul>
             <button class="add-to-cart-button">Add to Cart</button>
             <div class="product-navigation-buttons">
-                <button
-                    class="nav-button"
-                    [routerLink]="'/products/' +( selectedProduct.id - 1)"
-                >← Previous Product</button>
-                <button
-                    class="nav-button"
-                    [routerLink]="'/products/' +( selectedProduct.id + 1)"
-                >Next Product →</button>
+                <button class="nav-button">
+                    ← Previous Product
+                </button>
+                <button class="nav-button">
+                    Next Product →
+                </button>
             </div>
-            <a
-                routerLink="/products"
-                class="back-to-products-link"
-            >← Back to All Products</a>
+            <a routerLink="/products" class="back-to-products-link">← Back to All Products</a>
         </div>
     </div>
-    <div
-        class="product-details-section-no-product"
-        *ngIf="!selectedProduct"
-    >
+    <div class="product-details-section-no-product" *ngIf="!selectedProduct">
         <h2 class="no-product-selected">No product selected. Please select a product to view details.</h2>
-        <a
-            routerLink="/products"
-            class="cta-button secondary-cta"
-        >View All Products</a>
+        <a routerLink="/products" class="cta-button secondary-cta">View All Products</a>
     </div>
 </section>

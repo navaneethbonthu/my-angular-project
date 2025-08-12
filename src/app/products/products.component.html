@@ -5,28 +5,39 @@
     </div>
 
     <div class="product-list-grid">
-        <div class="product-card" *ngFor="let product of products">
-            <a>
-                <img src="{{ product.image }}" alt="Product image" class="product-image">
-            </a>
-            <div class="product-info">
-                <div>
-                    <a class="product-name">{{ product.name }}</a>
-                    <p class="product-price">{{ product.price | currency:'USD':'symbol' }}</p>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart-button" [routerLink]="'/products/checkout'" [state]="product">Add to
-                        Cart</button>
-                    <a class="view-details-button" [routerLink]="'/products/' + product.id">View Details</a>
+        <app-loader *ngIf="isLoading"></app-loader>
+        <ng-container *ngIf="!isLoading">
+            <div class="product-card" *ngFor="let product of products">
+                <a>
+                    <img src="{{ product.image }}" alt="Product image" class="product-image">
+                </a>
+                <div class="product-info">
+                    <div>
+                        <a class="product-name">{{ product.name }}</a>
+                        <p class="product-price">{{ product.price | currency:'USD':'symbol' }}</p>
+                    </div>
+                    <div class="product-details-actions">
+                        <button class="add-to-cart-button" [routerLink]="'/products/checkout'" [state]="product">
+                            Add to Cart
+                        </button>
+
+                        <div class="action-icon-group">
+                            <a class="view-details-button" [routerLink]="'/products/' + product.id">View</a>
+                            <button class="edit-button" (click)="onEditProduct(product.id)">Edit</button>
+                            <button class="delete-button" (click)="onDeleteProduct(product.id)">Delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
+
     </div>
 </section>
 
 <div class="modal-overlay" *ngIf="showAddProductModal">
     <div class="modal-content">
-        <app-create-product (productAdded)="onProductAdded($event)" (cancel)="onModalCancel()">
+        <app-create-product [selectedProduct]="selectedProduct" (productAdded)="onProductAddOrUpdatSubmit($event)"
+            (cancel)="onModalCancel()" [isEditMode]="isEdit">
         </app-create-product>
     </div>
 </div>
