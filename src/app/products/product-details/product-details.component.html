@@ -1,5 +1,5 @@
 <section class="container">
-    <div class="product-details-section" *ngIf="selectedProduct">
+    <div class="product-details-section" *ngIf="selectedProduct && !isLoading">
         <img src="{{selectedProduct.image}}" alt="Dynamic Tech Tee" class="product-details-image-large">
         <div class="product-details-info">
             <h1>{{selectedProduct.name}}</h1>
@@ -30,8 +30,9 @@
             <a routerLink="/products" class="back-to-products-link">← Back to All Products</a>
         </div>
     </div>
-    <div class="product-details-section-no-product" *ngIf="!selectedProduct">
+    <div class="product-details-section-no-product" *ngIf="!selectedProduct && !isLoading">
         <h2 class="no-product-selected">No product selected. Please select a product to view details.</h2>
         <a routerLink="/products" class="cta-button secondary-cta">View All Products</a>
     </div>
+    <app-loader *ngIf="isLoading && !selectedProduct"></app-loader>
 </section>

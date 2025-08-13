@@ -6,6 +6,8 @@
 
     <div class="product-list-grid">
         <app-loader *ngIf="isLoading"></app-loader>
+        <app-snackbar *ngIf="errorMessage" [message]="errorMessage" [snackbarType]="'error'">
+        </app-snackbar>
         <ng-container *ngIf="!isLoading">
             <div class="product-card" *ngFor="let product of products">
                 <a>

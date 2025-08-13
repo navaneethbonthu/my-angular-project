@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from '../services/products.service';
 import { Product, ProductPayload } from '../models/product';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -17,10 +17,17 @@ export class ProductsComponent implements OnInit {
   isEdit: boolean = false;
   selectedProduct: Product | null = null;
   isLoading: boolean = false;
+  errorSub: Subscription | null = null;
+  errorMessage: string | null = null;
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
     this.onGetAllProducts();
+    this.errorSub = this.productsService.errorSubject.subscribe({
+      next: (httpError) => {
+        this.setErrorMessage(httpError);
+      },
+    });
   }
 
   onModalCancel(): void {
@@ -35,9 +42,7 @@ export class ProductsComponent implements OnInit {
   onProductAddOrUpdatSubmit(newProduct: ProductPayload): void {
     this.showAddProductModal = false;
     if (this.isEdit && this.selectedProduct) {
-      this.productsService
-        .updateProduct(this.selectedProduct.id, newProduct)
-        .subscribe();
+      this.productsService.updateProduct(this.selectedProduct.id, newProduct);
     } else {
       this.productsService.createProduct(newProduct);
     }
@@ -62,6 +67,18 @@ export class ProductsComponent implements OnInit {
   }
 
   onDeleteProduct(id: string): void {
-    this.productsService.deleteProduct(id).subscribe();
+    this.productsService.deleteProduct(id);
+  }
+
+  private setErrorMessage(err: HttpErrorResponse) {
+    if (err.error.error === 'Permission denied') {
+      this.errorMessage = 'You do not have permisssion to perform this action';
+    } else {
+      this.errorMessage = err.message;
+    }
+
+    setTimeout(() => {
+      this.errorMessage = null;
+    }, 3000);
   }
 }

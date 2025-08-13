@@ -1,0 +1,124 @@
+/* src/app/shared/snackbar/snackbar.component.scss */
+
+:host {
+    /* Position the snackbar container at the bottom */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    /* Ensure it's on top of almost everything */
+    pointer-events: none;
+    /* Allows clicks to pass through when not visible */
+
+    /* Animation for appearing and disappearing */
+    animation: snackbar-fade-in 0.5s ease-out forwards;
+}
+
+.snackbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    min-width: 250px;
+    max-width: 90vw;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #fff;
+    pointer-events: auto;
+    /* Re-enable clicks when the snackbar is shown */
+}
+
+/* ================================================================
+   Snackbar Types (Colors)
+   ================================================================ */
+.success {
+    background-color: #4CAF50;
+    /* Green */
+}
+
+.error {
+    background-color: #F44336;
+    /* Red */
+}
+
+.warning {
+    background-color: #FF9800;
+    /* Orange */
+}
+
+.info {
+    background-color: #2196F3;
+    /* Blue */
+}
+
+/* ================================================================
+   Message and Close Button
+   ================================================================ */
+.snackbar-message {
+    flex-grow: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.snackbar-close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 1rem;
+    padding: 0;
+    color: #fff;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+/* ================================================================
+   Animations
+   ================================================================ */
+
+@keyframes snackbar-fade-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Add a class to use for hiding the snackbar with animation */
+.snackbar-fade-out {
+    animation: snackbar-fade-out 0.5s ease-in forwards;
+}
+
+@keyframes snackbar-fade-out {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, 50px);
+    }
+}
+
+/* ================================================================
+   Responsive Adjustments
+   ================================================================ */
+@media (max-width: 600px) {
+    .snackbar-container {
+        bottom: 10px;
+        left: 5%;
+        transform: translateX(0);
+        width: 90%;
+    }
+}

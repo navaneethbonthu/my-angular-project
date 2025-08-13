@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; // Add this import
 import { Observable, Subscription } from 'rxjs';
-import { Product } from 'src/app/models/product';
+import { Product, ProductPayload } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -10,9 +10,10 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
-  selectedProduct: Product | undefined;
-  paramId: string | null = null;
+  selectedProduct: ProductPayload | undefined;
+  // paramId: string | null = null;
   private paramSubscription: Subscription | undefined;
+  isLoading: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -20,14 +21,23 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // this.paramSubscription = this.activatedRoute.paramMap.subscribe(
-    //   (params) => {
-    //     this.paramId = params.get('id');
-    //     this.selectedProduct = this.productsService.products.find(
-    //       (product) => product.id === this.paramId
-    //     );
-    //   }
-    // );
+    this.paramSubscription = this.activatedRoute.paramMap.subscribe(
+      (params) => {
+        const productId = params.get('id');
+        if (productId) {
+          this.isLoading = true;
+          this.productsService.getProduct(productId).subscribe({
+            next: (product: ProductPayload) => {
+              console.log('selectedProduct', product);
+              this.selectedProduct = product;
+              this.isLoading = false;
+            },
+          });
+        } else {
+          this.selectedProduct = undefined;
+        }
+      }
+    );
   }
   ngOnDestroy(): void {
     if (this.paramSubscription) {

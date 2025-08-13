@@ -1,11 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product, ProductPayload } from '../models/product';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, Subject, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
   constructor(private httpClient: HttpClient) {}
+
+  errorSubject = new Subject<HttpErrorResponse>();
 
   createProduct(product: ProductPayload): void {
     this.httpClient
@@ -13,20 +15,33 @@ export class ProductsService {
         `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products.json`,
         product
       )
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      )
       .subscribe({
-        next: (response) => {
-          console.log('Added product:', response);
-        },
         error: (error) => {
-          console.error('Error adding product:', error);
+          this.errorSubject.next(error);
         },
       });
   }
 
   deleteProduct(id: string) {
-    return this.httpClient.delete(
-      `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`
-    );
+    this.httpClient
+      .delete(
+        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
+      )
+      .subscribe({
+        error: (error) => {
+          this.errorSubject.next(error);
+        },
+      });
   }
 
   getAllProducts(): Observable<Product[]> {
@@ -43,14 +58,43 @@ export class ProductsService {
             }
           }
           return productsArray;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
         })
       );
   }
 
   updateProduct(id: string, product: ProductPayload) {
-    return this.httpClient.put(
-      `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`,
-      product
-    );
+    this.httpClient
+      .put(
+        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`,
+        product
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
+      )
+      .subscribe({
+        error: (error) => {
+          this.errorSubject.next(error);
+        },
+      });
+  }
+
+  getProduct(id: string): Observable<ProductPayload> {
+    return this.httpClient
+      .get<ProductPayload>(
+        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`
+      )
+      .pipe(
+        map((response) => {
+          return { ...response };
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
+      );
   }
 }

@@ -17,6 +17,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CreateProductComponent } from './products/create-product/create-product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LoaderComponent } from './loader/loader.component';
     CheckoutComponent,
     CreateProductComponent,
     LoaderComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
