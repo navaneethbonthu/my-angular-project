@@ -103,12 +103,12 @@ export class AuthService {
       user.id,
       user.email,
       user._token,
-      user._expiresIn
+      new Date(user._expiresIn)
     );
     if (loggedUser.token) {
       this.user.next(loggedUser);
       const timerValue = +user._expiresIn.getTime() - new Date().getTime();
-      this.autoLogout(2000);
+      this.autoLogout(timerValue);
     }
   }
 
