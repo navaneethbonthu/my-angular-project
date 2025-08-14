@@ -22,12 +22,12 @@ export class ProductsComponent implements OnInit {
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.onGetAllProducts();
     this.errorSub = this.productsService.errorSubject.subscribe({
       next: (httpError) => {
         this.setErrorMessage(httpError);
       },
     });
+    this.onGetAllProducts();
   }
 
   onModalCancel(): void {
@@ -60,9 +60,15 @@ export class ProductsComponent implements OnInit {
 
   onGetAllProducts(): void {
     this.isLoading = true;
-    this.productsService.getAllProducts().subscribe((products) => {
-      this.products = products;
-      this.isLoading = false;
+    this.productsService.getAllProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+        this.isLoading = false;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.productsService.errorSubject.next(error);
+        this.isLoading = false;
+      },
     });
   }
 

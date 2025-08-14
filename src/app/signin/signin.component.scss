@@ -1,149 +1,208 @@
+/* src/app/signin/signin.component.scss */
+
+// Assuming you have a _variables.scss file. If not, define these directly.
+$primary-color: #007bff; // A strong blue for primary actions
+$secondary-color: #6c757d; // A neutral grey for secondary text/borders
+$text-dark: #343a40; // Dark text for readability
+$text-light: #6f7b8a; // Lighter text for descriptions
+$background-light: #f8f9fa; // Light background for the overall page
+$card-bg: #ffffff; // White background for the form container
+$border-light: #e0e0e0; // Light border color
+$error-red: #dc3545; // Red for validation messages
+
+// Transitions for smooth UI changes
+$transition-speed: 0.3s ease;
+
+// ================================================================
+// Page Layout: Centering the Form Block
+// ================================================================
 .center-block-page {
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 24px;
-}
-.login-container {
-  width: 100%;
-  max-width: 28rem;
-  background-color: #ffffff;
-  border-radius: 0.5rem;
-  padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  align-items: center;
+  min-height: 100vh; // Take full viewport height
+  background: $card-bg; // Gradient background
+  padding: 20px;
+  box-sizing: border-box; // Include padding in element's total width and height
 }
 
+// ================================================================
+// Login Container (The Card)
+// ================================================================
+.login-container {
+  background-color: $card-bg;
+  padding:20px 36px;// Generous padding
+  border-radius: 12px; // Softly rounded corners
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); // Elegant, deep shadow
+  width: 100%;
+  max-width: 450px; // Constrain max width for desktop
+  box-sizing: border-box; // Include padding in element's total width and height
+  transform: translateY(0); // For subtle animation if needed
+  transition: transform $transition-speed;
+}
+
+// ================================================================
+// Text Alignment and Typography
+// ================================================================
 .text-center {
   text-align: center;
-}
-
-.title {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem; // Space below title/subtitle
 }
 
 .subtitle {
-  color: #4b5563;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: $text-dark;
+  margin: 0;
+  letter-spacing: -0.5px; // Tighten spacing
 }
 
+// ================================================================
+// Form Fields
+// ================================================================
 .form-fields {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem; // Space between input groups
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .form-label {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $text-dark;
+  margin-bottom: 0.5rem; // Space between label and input
 }
 
 .input-field {
-  display: block;
   width: 100%;
-  padding: 0.5rem 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  font-size: 0.875rem;
-  color: #1f2937;
+  padding: 1rem 1.25rem; // Generous input padding
+  border: 1px solid $border-light;
+  border-radius: 8px; // Rounded input fields
+  font-size: 1rem;
+  color: $text-dark;
+  background-color: $background-light; // Slight background for input fields
+  transition: border-color $transition-speed, box-shadow $transition-speed;
+  box-sizing: border-box; // Include padding in width
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.2); // Subtle focus glow
+    outline: none; // Remove default outline
+    background-color: $card-bg; // White background on focus
+  }
+
+  &::placeholder {
+    color: $text-light;
+    opacity: 0.7;
+  }
 }
 
-.input-field::placeholder {
-  color: #9ca3af;
+// Validation message styling
+.validation-message {
+  color: $error-red;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  padding-left: 5px; // Small indent
 }
 
-.input-field:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-}
-
-.form-options {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-}
-
-.checkbox-container {
-  display: flex;
-  align-items: center;
-}
-
-.checkbox-input {
-  height: 1rem;
-  width: 1rem;
-  color: #2563eb;
-  border-color: #d1d5db;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
-
-.checkbox-label {
-  margin-left: 0.5rem;
-  font-size: 0.875rem;
-  color: #111827;
-}
-
-.link {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #2563eb;
-  text-decoration: none;
-}
-
-.link:hover {
-  color: #3b82f6;
-}
-
+// ================================================================
+// Button Container and Primary Button
+// ================================================================
 .button-container {
-  margin-top: 1.5rem;
+  margin-top: 2.5rem; // Space above the button
+  text-align: center; // Center the button
 }
 
 .btn-primary {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.375rem;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #ffffff;
-  background-color: #2563eb;
+  padding: 1.1rem 1.5rem; // Large, prominent button
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 8px; // Matches input fields
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.15s ease-in-out, transform 0.15s ease-in-out;
+  transition: background-color $transition-speed, transform $transition-speed, box-shadow $transition-speed;
+  letter-spacing: 0.5px; // Slight letter spacing
+
+  &:hover {
+    background-color: darken($primary-color, 8%);
+    transform: translateY(-2px); // Subtle lift
+    box-shadow: 0 6px 15px rgba($primary-color, 0.25);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba($primary-color, 0.15);
+  }
+
+  &:disabled {
+    background-color: lighten($primary-color, 20%);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
 }
 
-.btn-primary:hover {
-  background-color: #1d4ed8;
-}
-
-.btn-primary:active {
-  transform: translateY(1px);
-}
-
-.btn-primary:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #3b82f6;
-}
-
+// ================================================================
+// Sign Up / Switch Mode Section
+// ================================================================
 .signup-section {
-  margin-top: 1.5rem;
   text-align: center;
+  margin-top: 2.5rem; // Space above this section
+  border-top: 1px solid $border-light; // A subtle separator line
+  padding-top: 2rem;
 }
 
 .signup-text {
-  font-size: 0.875rem;
-  color: #4b5563;
+  font-size: 0.95rem;
+  color: $text-dark;
+  margin: 0; // Remove default paragraph margin
+}
+
+.link {
+  color: $primary-color;
+  font-weight: 600;
+  text-decoration: none; // Remove underline
+  cursor: pointer;
+  transition: color $transition-speed;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+    text-decoration: underline; // Underline on hover
+  }
+}
+
+// ================================================================
+// Responsive Adjustments
+// ================================================================
+@media (max-width: 600px) {
+  .login-container {
+    padding: 2rem 1.5rem; // Reduce padding on smaller screens
+    margin: 10px; // Ensure some margin from screen edges
+  }
+
+  .subtitle {
+    font-size: 1.8rem; // Adjust font size
+  }
+
+  .input-field {
+    padding: 0.8rem 1rem; // Reduce input padding
+    font-size: 0.9rem;
+  }
+
+  .btn-primary {
+    padding: 1rem 1.25rem; // Adjust button padding
+    font-size: 1rem;
+  }
+
+  .signup-section {
+    padding-top: 1.5rem;
+  }
 }

@@ -15,9 +15,14 @@ import { SigninComponent } from './signin/signin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CreateProductComponent } from './products/create-product/create-product.component';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { authInterceptorFn } from './interceptors/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,7 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [provideHttpClient(withInterceptors([authInterceptorFn]))],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,42 +1,51 @@
+<!-- src/app/signin/signin.component.html -->
 <div class="center-block-page">
     <div class="login-container">
         <div class="text-center">
-            <h2 class="title">Welcome Back!</h2>
-            <p class="subtitle">Please {{ isLoginMode ? 'log' : 'signup' }} in to your account</p>
+            <h2 class="subtitle">{{ isLoginMode ? 'Sign In' : 'Sign Up' }} Here</h2>
         </div>
 
-        <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+        <app-snackbar *ngIf="authMessage" [message]="authMessage" [snackbarType]="authStatus">
+        </app-snackbar>
+        <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
             <div class="form-fields">
-
-
                 <div>
-                    <label for="password" class="form-label">User Name</label>
-                    <input type="text" id="userna" formControlName="username" required class="input-field"
+                    <label for="username" class="form-label">User Name</label>
+                    <input type="text" id="username" formControlName="username" required class="input-field"
                         placeholder="Enter your username">
+                    <div *ngIf="signinForm.get('username')?.invalid && (signinForm.get('username')?.dirty || signinForm.get('username')?.touched)"
+                        class="validation-message">
+                        <span *ngIf="signinForm.get('username')?.errors?.['required']">Username is required.</span>
+                    </div>
                 </div>
                 <div>
-                    <label for="text" class="form-label">Password</label>
-                    <input type="password" id="password" formControlName="password" autocomplete="current-password"
-                        required class="input-field" placeholder="••••••••">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="text" id="password" formControlName="password" autocomplete="current-password" required
+                        class="input-field" placeholder="••••••••">
+                    <div *ngIf="signinForm.get('password')?.invalid && (signinForm.get('password')?.dirty || signinForm.get('password')?.touched)"
+                        class="validation-message">
+                        <span *ngIf="signinForm.get('password')?.errors?.['required']">Password is required.</span>
+                        <span *ngIf="signinForm.get('password')?.errors?.['minlength']">Password must be at least 6
+                            characters.</span>
+                    </div>
                 </div>
             </div>
 
-
-
             <div class="button-container">
-                <button type="submit" class="btn-primary">
-                    Sign in
+                <button type="submit" class="btn-primary" [disabled]="signinForm.invalid">
+                    {{ isLoginMode ? 'Sign In': 'Sign Up' }}
                 </button>
             </div>
         </form>
 
         <div class="signup-section">
             <p class="signup-text">
-                Don't have an account?
+                {{ isLoginMode ? 'Don\'t have an account?' : 'Already have an account?' }}
                 <a class="link" (click)="onSwithchMode()">
-                    {{ isLoginMode ? 'Sign up' : 'Log in' }}
+                    {{ isLoginMode ? 'Sign Up' : 'Sign In' }}
                 </a>
             </p>
         </div>
     </div>
 </div>
+<app-loader *ngIf="isLoading"></app-loader>

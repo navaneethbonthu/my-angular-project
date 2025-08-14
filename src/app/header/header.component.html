@@ -1,45 +1,17 @@
 <header class="header">
-    <a
-        routerLink="/"
-        class="header-logo"
-    >VibrantStyle</a>
+    <a routerLink="/" class="header-logo">VibrantStyle</a>
     <nav class="nav-links">
-        <a
-            routerLink="/home"
-            class="nav-link"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}"
-        >
+        <a routerLink="/home" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
             Home</a>
-        <a
-            routerLink="/products"
-            class="nav-link"
-            routerLinkActive="active"
-        >Products</a>
-        <a
-            routerLink="/about"
-            class="nav-link"
-            routerLinkActive="active"
-        >About
+        <a routerLink="/products" class="nav-link" routerLinkActive="active" *ngIf="isLoggedIn">Products</a>
+        <a routerLink="/about" class="nav-link" routerLinkActive="active">About
             Us</a>
-        <a
-            routerLink="/contact"
-            class="nav-link"
-            routerLinkActive="active"
-        >Contact</a>
-        <a
-            routerLink="/signin"
-            class="nav-link"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}"
-        >Sign In</a>
-        <a
-            routerLink="/signin"
-            class="nav-link"
-            routerLinkActive="active"
-            (click)="logout()"
-            [routerLinkActiveOptions]="{exact:true}"
-        >
+        <a routerLink="/contact" class="nav-link" routerLinkActive="active">Contact</a>
+        <a routerLink="/signin" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+            *ngIf="!isLoggedIn">Sign
+            In</a>
+        <a routerLink="/signin" class="nav-link" routerLinkActive="active" (click)="logout()" *ngIf="isLoggedIn"
+            [routerLinkActiveOptions]="{exact:true}">
             Signout
         </a>
     </nav>

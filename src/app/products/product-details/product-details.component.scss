@@ -268,4 +268,9 @@
     font-size: 1.1rem;
     margin-bottom: var(--spacing-lg);
   }
+  .div-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

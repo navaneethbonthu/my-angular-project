@@ -1,21 +1,15 @@
-export interface User {
-  id: number;
-  name: string;
-  username: string;
-  pssword: string;
-}
-
 export class User {
-  constructor(id: number, name: string, username: string, pssword: string) {
-    this.id = id;
-    this.name = name;
-    this.username = username;
-    this.pssword = pssword;
+  constructor(
+    public id: string,
+    public email: string,
+    private _token: string,
+    private _expiresIn: Date
+  ) {}
+
+  get token() {
+    if (!this._expiresIn || this._expiresIn < new Date()) {
+      return null;
+    }
+    return this._token;
   }
-  id: number;
-
-  name: string;
-  username: string;
-
-  pssword: string;
 }

@@ -11,7 +11,7 @@ export class SnackbarComponent implements OnInit {
   // Inputs to receive data from the parent component
   @Input() message: string = 'Default message.';
   @Input() snackbarType: SnackbarType = 'error'; // Default type is 'info'
-  @Input() autoHideDuration: number = 3000; // Default to 3 seconds
+  @Input() autoHideDuration: number = 5000; // Default to 3 seconds
 
   // Output to notify the parent when the snackbar should be closed
   @Output() close = new EventEmitter<void>();
