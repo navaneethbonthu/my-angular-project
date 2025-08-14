@@ -78,7 +78,7 @@ export class SigninComponent implements OnInit {
         this.authMessage = 'User signed up successfully.';
         this.authStatus = 'success';
         this.isLoading = false;
-        console.log(response);
+        // console.log(response);
         this.router.navigate(['/products']);
       },
       error: (errorMsg) => {

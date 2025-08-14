@@ -9,7 +9,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SigninComponent } from './signin/signin.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import {
-  canActivateChildFn,
+  // canActivateChildFn,
   canActivateFn,
   canDeactivateFn,
 } from './guards/auth.guard';
@@ -20,19 +20,19 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   {
     path: 'products',
-    // canActivate: [canActivateFn],
+    canActivate: [canActivateFn],
     // canActivateChild: [canActivateChildFn],
     children: [
       { path: '', component: ProductsComponent },
       {
         path: 'checkout',
         component: CheckoutComponent,
-        canActivate: [canActivateFn],
+        // canActivate: [canActivateFn],
       },
       {
         path: ':id',
         component: ProductDetailsComponent,
-        canActivate: [canActivateFn],
+        // canActivate: [canActivateFn],
       },
     ],
   },

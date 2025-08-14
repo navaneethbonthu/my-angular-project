@@ -11,7 +11,7 @@ import { BehaviorSubject, catchError, Subject, tap, throwError } from 'rxjs';
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
-  private isAuthenticated = false;
+  tokenExpiresInTimer: any = null;
 
   userService: UserService = inject(UserService);
   user = new BehaviorSubject<User | null>(null);
@@ -47,12 +47,14 @@ export class AuthService {
   }
 
   logout() {
-    this.isAuthenticated = false;
-    console.log('User logged out');
-  }
+    this.user.next(null);
+    // this.isAuthenticated = false;
+    localStorage.removeItem('user');
+    if (this.tokenExpiresInTimer) {
+      clearTimeout(this.tokenExpiresInTimer);
+    }
 
-  isLoggedIn(): boolean {
-    return this.isAuthenticated;
+    this.tokenExpiresInTimer = null;
   }
 
   private handleError(errorRes: HttpErrorResponse) {
@@ -85,5 +87,34 @@ export class AuthService {
     const expiresIn = new Date(expiresInTs);
     const user = new User(res.localId, res.email, res.idToken, expiresIn);
     this.user.next(user);
+
+    this.autoLogout(+res.expiresIn * 1000);
+
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  autoLogin() {
+    const userItem = localStorage.getItem('user');
+    const user = userItem ? JSON.parse(userItem) : null;
+    if (!user) {
+      return;
+    }
+    const loggedUser = new User(
+      user.id,
+      user.email,
+      user._token,
+      user._expiresIn
+    );
+    if (loggedUser.token) {
+      this.user.next(loggedUser);
+      const timerValue = +user._expiresIn.getTime() - new Date().getTime();
+      this.autoLogout(2000);
+    }
+  }
+
+  autoLogout(expirationTime: number) {
+    this.tokenExpiresInTimer = setTimeout(() => {
+      this.logout();
+    }, expirationTime);
   }
 }

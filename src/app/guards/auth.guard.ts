@@ -1,28 +1,36 @@
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { CanActivateFn, Router, UrlTree } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 
 export interface CanDeactivateComponent {
   canExitFormThisRoute: () => Observable<boolean> | Promise<boolean> | boolean;
 }
 
-export const canActivateFn = () => {
+export const canActivateFn: CanActivateFn = ():
+  | boolean
+  | UrlTree
+  | Observable<boolean | UrlTree> => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.isLoggedIn()) {
-    return false;
-  } else {
-    router.navigate(['/signin']);
-    return false;
-  }
+  return authService.user.pipe(
+    take(1),
+    map((user) => {
+      const loggedIn = user ? true : false;
+      if (loggedIn) {
+        return true;
+      } else {
+        return router.createUrlTree(['/signin']);
+      }
+    })
+  );
 };
 
-export const canActivateChildFn = () => {
-  canActivateFn();
-};
+// export const canActivateChildFn = () => {
+//   canActivateFn();
+// };
 
 export const canDeactivateFn = (comp: CanDeactivateComponent) => {
   return comp.canExitFormThisRoute();

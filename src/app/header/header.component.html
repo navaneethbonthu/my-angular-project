@@ -10,7 +10,7 @@
         <a routerLink="/signin" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
             *ngIf="!isLoggedIn">Sign
             In</a>
-        <a routerLink="/signin" class="nav-link" routerLinkActive="active" (click)="logout()" *ngIf="isLoggedIn"
+        <a routerLink="/signin" class="nav-link" routerLinkActive="active" (click)="onLogout()" *ngIf="isLoggedIn"
             [routerLinkActiveOptions]="{exact:true}">
             Signout
         </a>

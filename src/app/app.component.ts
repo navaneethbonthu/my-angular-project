@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'my-angular-project';
+
+  authService: AuthService = inject(AuthService);
+
+  ngOnInit(): void {
+    this.authService.autoLogin();
+  }
 }
