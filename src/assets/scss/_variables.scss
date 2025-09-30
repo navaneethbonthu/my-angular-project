@@ -47,11 +47,34 @@
 
 
     // modals page variabls
-    $primary-color: #333;
-    $secondary-color: #007bff;
-    $accent-color: #6c757d;
-    $background-color: #f8f9fa;
-    $card-bg: #fff;
-    $card-border: #e2e6ea;
-    $text-color-light: #6c757d;
+    // $primary-color: #333;
+    // $secondary-color: #007bff;
+    // $accent-color: #6c757d;
+    // $background-color: #f8f9fa;
+    // $card-bg: #fff;
+    // $card-border: #e2e6ea;
+    // $text-color-light: #6c757d;
+
+
+    // page not found variables
+    $primary-text-color: #374151; // Tailwind gray-700 equivalent
+    $secondary-text-color: #6b7280; // Tailwind gray-500 equivalent
+    $heading-404-color: #dc2626; // Tailwind red-600 equivalent
+    $background-color: #f3f4f6; // Tailwind gray-100 equivalent
+    $card-background: #ffffff;
+    $button-bg: #2563eb; // Tailwind blue-600 equivalent
+    $button-hover-bg: #1d4ed8; // Tailwind blue-700 equivalent
+    $font-stack: "Inter", sans-serif; // Assuming Inter font is loaded globally or in a shared style.
+
+
+    // modal page variables
+    // Assuming you have a _variables.scss file. If not, define these directly.
+    // $primary-color: #162331; // A strong blue for primary actions
+    $secondary-color: #6c757d; // A neutral grey for secondary text/borders
+    $text-dark: #343a40; // Dark text for readability
+    $text-light: #6f7b8a; // Lighter text for descriptions
+    $background-light: #f8f9fa; // Light background for the overall page
+    $card-bg: #ffffff; // White background for the form container
+    $border-light: #e0e0e0; // Light border color
+    $error-red: #dc3545; // Red for validation messages
 }

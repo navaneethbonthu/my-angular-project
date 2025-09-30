@@ -1,12 +1,4 @@
 
-/*
- * src/app/footer/footer.component.scss
- * Component-specific styles for the Footer.
- */
-
-@import '../../assets/scss/variables'; // Assuming variables are in src/styles/
-@import '../../assets/scss/layout'; // Assuming layout styles are in src/styles/
-@import '../../assets/scss/buttons'; // Assuming button styles are in src/styles/
 
 .footer {
     background-color: var(--color-primary);

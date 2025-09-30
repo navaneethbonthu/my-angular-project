@@ -1,12 +1,4 @@
-/*
- * src/app/header/header.component.scss
- * Component-specific styles for the Header.
- */
 
-// @import 'src/assets/variables.scss'; // Assuming variables are in src/styles/
-@import '../../assets/scss/variables'; // Assuming variables are in src/styles/
-@import '../../assets/scss/layout'; // Assuming layout styles are in src/styles/
-@import '../../assets/scss/buttons'; // Assuming button styles are in src/styles/
 
 .header {
     background-color: var(--color-white);
