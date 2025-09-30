@@ -2,7 +2,14 @@
 /* It will be scoped to the component's template by default. */
 
 // Variables for consistent styling
-
+ $primary-text-color: #374151; // Tailwind gray-700 equivalent
+ $secondary-text-color: #6b7280; // Tailwind gray-500 equivalent
+ $heading-404-color: #dc2626; // Tailwind red-600 equivalent
+ $background-color: #f3f4f6; // Tailwind gray-100 equivalent
+ $card-background: #ffffff;
+ $button-bg: #2563eb; // Tailwind blue-600 equivalent
+ $button-hover-bg: #1d4ed8; // Tailwind blue-700 equivalent
+ $font-stack: "Inter", sans-serif; // Assuming Inter f
 
 .page-not-found-container {
   /* Styles for the full page container */
