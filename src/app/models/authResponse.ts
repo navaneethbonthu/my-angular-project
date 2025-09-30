@@ -13,11 +13,11 @@ export interface JwtPayload {
   sub: string;
 }
 
-export interface User {
-  aud: string;
-  email: string;
-  exp: number;
-  iat: number;
-  iss: string;
-  sub: string;
-}
+// export interface User {
+//   aud: string;
+//   email: string;
+//   exp: number;
+//   iat: number;
+//   iss: string;
+//   sub: string;
+// }
