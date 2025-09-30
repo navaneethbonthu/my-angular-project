@@ -42,9 +42,6 @@ export const authInterceptorFn: HttpInterceptorFn = (
         },
       });
 
-      console.log(
-        `Interceptor: Attaching token as query param 'auth' to protected route: ${req.url}`
-      );
       return next(clonedRequest);
     })
   );

@@ -8,13 +8,10 @@ export class ProductsService {
   constructor(private httpClient: HttpClient) {}
 
   errorSubject = new Subject<HttpErrorResponse>();
-
+  NESTJS_BASE_URL = 'http://localhost:3000/products';
   createProduct(product: ProductPayload): void {
     this.httpClient
-      .post<{ name: string }>(
-        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products.json`,
-        product
-      )
+      .post<{ name: string }>(this.NESTJS_BASE_URL, product)
       .pipe(
         catchError((error) => {
           return throwError(() => error);
@@ -29,9 +26,7 @@ export class ProductsService {
 
   deleteProduct(id: string) {
     this.httpClient
-      .delete(
-        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`
-      )
+      .delete(this.NESTJS_BASE_URL + '/' + id)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           return throwError(() => error);
@@ -45,32 +40,19 @@ export class ProductsService {
   }
 
   getAllProducts(): Observable<Product[]> {
-    return this.httpClient
-      .get<{ [key: string]: Product }>(
-        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products.json`
-      )
-      .pipe(
-        map((responseData: { [key: string]: Product }) => {
-          const productsArray: Product[] = [];
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              productsArray.push({ ...responseData[key], id: key });
-            }
-          }
-          return productsArray;
-        }),
-        catchError((error: HttpErrorResponse) => {
-          return throwError(() => error);
-        })
-      );
+    return this.httpClient.get<Product[]>(this.NESTJS_BASE_URL).pipe(
+      map((response) => {
+        return [...response];
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
 
   updateProduct(id: string, product: ProductPayload) {
     this.httpClient
-      .put(
-        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`,
-        product
-      )
+      .put(this.NESTJS_BASE_URL + '/' + id, product)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           return throwError(() => error);
@@ -85,9 +67,7 @@ export class ProductsService {
 
   getProduct(id: string): Observable<ProductPayload> {
     return this.httpClient
-      .get<ProductPayload>(
-        `https://angular-learning-5eefb-default-rtdb.firebaseio.com/products/${id}.json`
-      )
+      .get<ProductPayload>(this.NESTJS_BASE_URL + '/' + id)
       .pipe(
         map((response) => {
           return { ...response };

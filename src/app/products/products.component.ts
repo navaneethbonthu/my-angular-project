@@ -40,6 +40,8 @@ export class ProductsComponent implements OnInit {
   }
 
   onProductAddOrUpdatSubmit(newProduct: ProductPayload): void {
+    console.log(newProduct);
+
     this.showAddProductModal = false;
     if (this.isEdit && this.selectedProduct) {
       this.productsService.updateProduct(this.selectedProduct.id, newProduct);
@@ -73,6 +75,8 @@ export class ProductsComponent implements OnInit {
   }
 
   onDeleteProduct(id: string): void {
+    console.log('delete product called with id', id);
+
     this.productsService.deleteProduct(id);
   }
 
