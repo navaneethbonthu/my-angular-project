@@ -3,22 +3,19 @@
  * Component-specific styles for the Products Page.
  */
 
-@import '../../assets/scss/variables';
-@import '../../assets/scss/layout';
-@import '../../assets/scss/buttons'; // Including for general button base styles
-@import '../../assets/scss/modal'; // Including for modal styles
+@use 'index' as *;
 
 // ================================================================
 // Existing Variables and Base Styles (from your provided code)
 // ================================================================
-$primary-color: #333;
-$secondary-color: #007bff; // Main action color (blue)
-$accent-color: #6c757d; // Neutral/secondary action color (gray)
-$background-color: #f8f9fa;
-$card-bg: #fff;
-$card-border: #e2e6ea;
-$text-color-light: #6c757d;
-$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+// $primary-color: #333;
+// $secondary-color: #007bff; // Main action color (blue)
+// $accent-color: #6c757d; // Neutral/secondary action color (gray)
+// $background-color: #f8f9fa;
+// $card-bg: #fff;
+// $card-border: #e2e6ea;
+// $text-color-light: #6c757d;
+// $font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
 body {
     font-family: $font-stack;

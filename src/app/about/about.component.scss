@@ -8,6 +8,9 @@
 @import '../../assets/scss/layout';
 @import '../../assets/scss/buttons'; // Including buttons in case general button styles are needed here
 
+
+// @use 'index' as *;
+
 .static-content-section {
     max-width: 900px;
     margin: 0 auto;

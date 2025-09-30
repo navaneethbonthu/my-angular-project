@@ -1,24 +1,12 @@
-@import 'variables';
+@use 'variables';
 
-@import 'base';
+@use 'base';
 
-@import 'layout';
+@use 'layout';
 
-@import 'buttons';
+@use 'buttons';
 
-@import 'mixins';
+@use 'mixins';
 
+// @use 'index'
 
-
-// 5. Import Component/Page Specific Styles:
-//    These would typically be in their own component's .scss file,
-//    but included here for demonstration of a single compiled CSS output.
-//    In a real Angular app, these might be directly linked to their components.
-// @import 'header';
-// @import 'footer';
-// @import 'pages/home';
-// @import 'pages/products';
-// @import 'pages/product-details';
-// @import 'pages/about';
-// @import 'pages/contact';
-// @import 'responsive'; // Media queries for responsiveness
