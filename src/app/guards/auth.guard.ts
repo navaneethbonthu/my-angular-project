@@ -15,10 +15,14 @@ export const canActivateFn: CanActivateFn = ():
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authService.user.pipe(
+  // Use authService.currentUser$ which is the correct BehaviorSubject observable.
+  return authService.currentUser$.pipe(
+    // Ensure we only take the current value and immediately unsubscribe.
     take(1),
     map((user) => {
-      const loggedIn = user ? true : false;
+      // The user object is JwtPayload | null. It is truthy if the user is logged in.
+      const loggedIn = !!user; // Use !! to convert the object/null directly to a boolean
+
       if (loggedIn) {
         return true;
       } else {

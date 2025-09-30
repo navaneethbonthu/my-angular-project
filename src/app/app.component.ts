@@ -11,7 +11,5 @@ export class AppComponent implements OnInit {
 
   authService: AuthService = inject(AuthService);
 
-  ngOnInit(): void {
-    this.authService.autoLogin();
-  }
+  ngOnInit(): void {}
 }
