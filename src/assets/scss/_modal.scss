@@ -1,21 +1,4 @@
-/*
- * Awesome Modal Pop-up SCSS
- * Shared styles for a beautiful, modern modal dialog.
- */
 
-// Import your shared variables for consistent theming
-// @import '../../assets/scss/variables';
-// $primary-color: #333;
-// $secondary-color: #007bff;
-// $accent-color: #6c757d;
-// $background-color: #f8f9fa;
-// $card-bg: #fff;
-// $card-border: #e2e6ea;
-// $text-color-light: #6c757d;
-
-// ================================================================
-// Modal Backdrop and Container
-// ================================================================
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -40,7 +23,7 @@
     position: relative;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); // A prominent, elegant shadow
     animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-origin: center;
+    transform-origin: center; // Scale from  center for a dynamic effect
 }
 
 .close-button {
@@ -58,7 +41,7 @@
     transition: color 0.2s ease, transform 0.2s ease;
 
     &:hover {
-        color: $primary-color;
+        color: var(--color-primary);
         transform: rotate(90deg); // A fun little hover animation
     }
 }
